@@ -6,7 +6,7 @@ import java.util.function.*;
 import java.util.stream.Collectors;
 
 public class UtilsFunctionalInterfacesMethods {
-    public static BiConsumer<Integer,Integer> sumOfTwoIntegers = (a, b) -> System.out.println("Sum of to integer "+(a + b));
+    public static BiFunction<Integer,Integer,Integer> sumOfTwoIntegers = Integer::sum;
 
     public static Predicate<String> emptyStringChecker = String::isEmpty;
 

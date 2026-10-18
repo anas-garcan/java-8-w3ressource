@@ -10,7 +10,7 @@ public class MainFunctionalInterfaces {
         System.out.println("1. Sum of two integers");
         int a = 10;
         int b = 20;
-        UtilsFunctionalInterfacesMethods.sumOfTwoIntegers.accept(a,b);
+        UtilsFunctionalInterfacesMethods.sumOfTwoIntegers.apply(a,b);
         System.out.println("2. Check if a string is empty");
         System.out.println(UtilsFunctionalInterfacesMethods.emptyStringChecker.test(""));
         System.out.println(UtilsFunctionalInterfacesMethods.emptyStringChecker.test("Hello Word"));
