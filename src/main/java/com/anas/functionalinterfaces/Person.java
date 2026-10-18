@@ -1,6 +1,6 @@
 package com.anas.functionalinterfaces;
 
-public class Person {
+public class    Person {
     private String name;
     private Integer age;
 

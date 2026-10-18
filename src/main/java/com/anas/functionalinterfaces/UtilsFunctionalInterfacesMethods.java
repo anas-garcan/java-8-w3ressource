@@ -6,15 +6,15 @@ import java.util.function.*;
 import java.util.stream.Collectors;
 
 public class UtilsFunctionalInterfacesMethods {
-    public static BiConsumer<Integer,Integer> SumOfTwoInteger = (a, b) -> System.out.println("Sum of to integer "+(a + b));
+    public static BiConsumer<Integer,Integer> sumOfTwoIntegers = (a, b) -> System.out.println("Sum of to integer "+(a + b));
 
-    public static Predicate<String> ifIsEmptyString = String::isEmpty;
+    public static Predicate<String> emptyStringChecker = String::isEmpty;
 
-    public static Consumer<String> chainToUpperCase = (chain1) -> System.out.println("UpperCase   "+chain1.toUpperCase());
+    public static Function<String,String> upperCaseConverter = String::toUpperCase;
 
-    public static Consumer<String> chainToLowerCase = (chain2) -> System.out.println("Lower Case   "+chain2.toLowerCase());
+    public static Function<String,String> lowerCaseConverter = String::toLowerCase;
 
-    public static Predicate<Integer> evenNumber = n -> n % 2 == 0;
+    public static Predicate<Integer> evenNumberChecker  = n -> n % 2 == 0;
 
     public static Predicate<Integer> oddNumber = n -> n % 2 != 0;
 
@@ -119,42 +119,44 @@ public class UtilsFunctionalInterfacesMethods {
 
     };
 
-    public static BiFunction<Integer, Integer, Integer> sumPrimeNumbers = (max, min) -> {
-        int sum = 0;
-        for (int i = min; i <= max; i++) {
-            if (i < 2) {
-                continue;
-            }
-            boolean isPrime = true;
 
-            for (int j = 2; j <= Math.sqrt(i); j++) {
-                if (i % j == 0) {
-                    isPrime = false;
-                    break;
-                }
-            }
-            if (isPrime) {
-                sum += i;
-            }
+    public static Predicate<Integer> primeNumberChecker = n ->{
+        if (n < 2)
+
+        return false;
+
+        for (int i = 2; i < n; i++) {
+            if (n % i == 0)
+                return false;
         }
-        return sum;
+        return true;
     };
+ public static BiFunction<Integer, Integer,Integer> sumOfPrimes = (begin,end) -> {
+      int sum = 0;
+      for (int i = begin; i < end; i++) {
+          if (UtilsFunctionalInterfacesMethods.primeNumberChecker.test(i))
+              sum+=i;
+      }
+      return sum;
+  };
+
+
 
     public static Consumer<List<String>> checkCase = list -> {
-        int minuscules = 0;
-        int majuscules = 0;
+        int lowers = 0;
+        int uppers = 0;
 
         for (String l : list) {
             if (l.equals(l.toLowerCase())) {
-                minuscules++;
+                lowers++;
             } else if (l.equals(l.toUpperCase())) {
-                majuscules++;
+                uppers++;
             }
         }
 
-        if (minuscules == list.size()) {
+        if (lowers == list.size()) {
             System.out.println("Les éléments de la liste sont en minuscules");
-        } else if (majuscules == list.size()) {
+        } else if (uppers == list.size()) {
             System.out.println("Les éléments de la liste sont en majuscules");
         } else {
             System.out.println("Les éléments sont mixtes");
